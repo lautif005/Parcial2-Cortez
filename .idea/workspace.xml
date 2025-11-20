@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="852b551d-6eba-4ab3-bd7b-dd50e83e8744" name="Changes" comment="" />
+    <list default="true" id="852b551d-6eba-4ab3-bd7b-dd50e83e8744" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/controller/MutantControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/controller/MutantControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/service/MutantDetectorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/service/MutantDetectorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/service/MutantServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/service/MutantServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/service/StatsServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/service/StatsServiceTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,18 +53,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.ExamenMercado-main [:org.example.MutantDetectorApplication.main()].executor": "Run",
-    "Gradle.MutantControllerTest.executor": "Run",
-    "Gradle.MutantControllerTest.testCheckMutant_ReturnOk_WhenIsMutant.executor": "Run",
-    "Gradle.MutantDetectorTest.testMutantWithTwoHorizontalSequences.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "git-widget-placeholder": "main"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.ExamenMercado-main [:org.example.MutantDetectorApplication.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.MutantControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.MutantControllerTest.testCheckMutant_ReturnOk_WhenIsMutant.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.MutantDetectorTest.testMutantWithTwoHorizontalSequences.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Gradle.MutantControllerTest.testCheckMutant_ReturnOk_WhenIsMutant">
     <configuration name="MutantDetectorApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.MutantDetectorApplication" />
