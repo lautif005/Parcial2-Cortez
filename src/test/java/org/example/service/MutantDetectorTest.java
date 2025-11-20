@@ -60,11 +60,11 @@ class MutantDetectorTest {
     @DisplayName("MUTANTE 4: 1 Horizontal y 1 Diagonal Ascendente (↗)")
     void testMutantWithHorizontalAndAscendingDiagonal() {
         String[] dna = {
-                "GTAGTA", // 5 (A)
-                "GTACTA", // 4 (A)
-                "GTAGCA", // 3 (A)
-                "GTACAA", // 2 (A)
-                "CCCCCT", // Horizontal: CCCC
+                "GTAGTA",
+                "GTACTA",
+                "GTAGCA",
+                "GTACAA",
+                "CCCCCT",
                 "TCACTG"
         };
         assertTrue(mutantDetector.isMutant(dna));
@@ -74,10 +74,10 @@ class MutantDetectorTest {
     @DisplayName("MUTANTE 5: Matriz de 4x4 (Mínimo Tamaño) - Diagonales")
     void testSmallestMatrixMutant() {
         String[] dna = {
-                "GTGC", // C
-                "CATT", // C
-                "ATCA", // C
-                "CAGA"  // C - Diagonal Ascendente: CCCC
+                "GTGC",
+                "CATT",
+                "ATCA",
+                "CAGA"
         };
         assertTrue(mutantDetector.isMutant(dna));
     }
@@ -89,8 +89,8 @@ class MutantDetectorTest {
                 "ATGCGAATGC",
                 "CAGTGCCAGT",
                 "TTATGTTTAT",
-                "AGAAAAATAA", // Seq 1: AAAA
-                "CCCCTACCCC", // Seq 2: CCCC
+                "AGAAAAATAA",
+                "CCCCTACCCC",
                 "TCACTGTCAC",
                 "ATGCGAATGC",
                 "CAGTGCCAGT",
@@ -100,7 +100,6 @@ class MutantDetectorTest {
         assertTrue(mutantDetector.isMutant(largeDna));
     }
 
-    // --- CASOS HUMANOS (Debe retornar FALSE) ---
 
     @Test
     @DisplayName("HUMANO 1: Sin Secuencias")
@@ -118,7 +117,7 @@ class MutantDetectorTest {
     @DisplayName("HUMANO 2: Solo 1 Secuencia Horizontal (Caso Borde)")
     void testHumanWithExactlyOneSequence() {
         String[] dna = {
-                "AAAAGA", // Solo 1 secuencia: AAAA
+                "AAAAGA",
                 "CAGTGC",
                 "TTATGT",
                 "AGAAGG",
@@ -132,17 +131,15 @@ class MutantDetectorTest {
     @DisplayName("HUMANO 3: Secuencia de 3 y 5 (No de 4)")
     void testHumanWithSequencesOfThreeAndFive() {
         String[] dna = {
-                "AAAAAG", // Secuencia de 5
+                "AAAAAG",
                 "CAGTGC",
-                "TTTGT", // Secuencia de 3
+                "TTTGT",
                 "AGAAGG",
                 "CCACTA",
                 "TCACTG"
         };
         assertFalse(mutantDetector.isMutant(dna));
     }
-
-    // --- CASOS DE VALIDACIÓN Y RENDIMIENTO ---
 
     @Test
     @DisplayName("VALIDACIÓN 1: Matriz Nula")
@@ -161,12 +158,12 @@ class MutantDetectorTest {
     @DisplayName("VALIDACIÓN 3: Matriz No Cuadrada (6x5)")
     void testValidationNonSquareMatrix() {
         String[] dna = {
-                "ATGCG", // 5
-                "CAGTG", // 5
-                "TTATG", // 5
-                "AGAAG", // 5
-                "CCCCT", // 5
-                "TCACT"  // 5, pero son 6 filas. La validación falla antes.
+                "ATGCG",
+                "CAGTG",
+                "TTATG",
+                "AGAAG",
+                "CCCCT",
+                "TCACT"
         };
         assertFalse(mutantDetector.isMutant(dna));
     }
@@ -176,7 +173,7 @@ class MutantDetectorTest {
     void testValidationInvalidCharacters() {
         String[] dna = {
                 "ATGCGA",
-                "CAGTXC", // 'X' inválido
+                "CAGTXC",
                 "TTATGT",
                 "AGAAGG",
                 "CCCCTA",
@@ -202,7 +199,7 @@ class MutantDetectorTest {
         String[] dna = {
                 "ATGC",
                 "CAGT",
-                null, // Fila nula
+                null,
                 "AGAC"
         };
         assertFalse(mutantDetector.isMutant(dna));
@@ -211,11 +208,10 @@ class MutantDetectorTest {
     @Test
     @DisplayName("OPTIMIZACIÓN: Early Termination (Tiempo)")
     void testEarlyTerminationIsUsed() {
-        // Matriz muy grande 100x100
         String[] largeMutantDna = new String[100];
-        String row = "AAAAAAAA" + "T".repeat(92); // Genera la primera secuencia de 8 A's
+        String row = "AAAAAAAA" + "T".repeat(92);
         for (int i = 0; i < 100; i++) {
-            largeMutantDna[i] = row; // Cada fila tiene al menos 2 secuencias (8 A's = 5 secuencias de 4)
+            largeMutantDna[i] = row;
         }
 
         long startTime = System.nanoTime();
@@ -223,8 +219,6 @@ class MutantDetectorTest {
         long endTime = System.nanoTime();
         long durationMs = (endTime - startTime) / 1_000_000;
 
-        // Si la terminación temprana funciona, el tiempo debe ser muy bajo,
-        // ya que solo revisa las primeras filas (Objetivo: < 10ms)
         assertTrue(durationMs < 10, "El algoritmo no terminó temprano. Duración: " + durationMs + "ms");
     }
 }

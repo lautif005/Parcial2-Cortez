@@ -97,7 +97,6 @@ class MutantControllerTest {
         DnaRequest request = new DnaRequest();
         request.setDna(tooSmallDna);
 
-        // ACT & ASSERT: Esperar 400 Bad Request (Capturado por el Custom Validator)
         mockMvc.perform(post("/mutant")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
@@ -105,12 +104,9 @@ class MutantControllerTest {
                 .andExpect(jsonPath("$.message").exists());
     }
 
-    // --- GET /stats TESTS ---
-
     @Test
     @DisplayName("GET /stats -> 200 OK y JSON correcto")
     void testGetStats_ReturnOk_AndCorrectJson() throws Exception {
-        // ARRANGE: Mockear el servicio de estadísticas
         StatsResponse mockResponse = StatsResponse.builder()
                 .countMutantDna(40L)
                 .countHumanDna(100L)
@@ -118,19 +114,17 @@ class MutantControllerTest {
                 .build();
         when(statsService.getStats()).thenReturn(mockResponse);
 
-        // ACT & ASSERT: Simular GET y verificar contenido JSON
         mockMvc.perform(get("/stats")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.countMutantDna").value(40L))
                 .andExpect(jsonPath("$.countHumanDna").value(100L))
-                .andExpect(jsonPath("$.ratio").value(0.4)); // Verifica el contrato de la API
+                .andExpect(jsonPath("$.ratio").value(0.4));
     }
 
     @Test
     @DisplayName("GET /stats -> 200 OK con datos vacíos")
     void testGetStats_ReturnOk_WithNoData() throws Exception {
-        // ARRANGE: Mockear con datos vacíos
         StatsResponse mockResponse = StatsResponse.builder()
                 .countMutantDna(0L)
                 .countHumanDna(0L)
@@ -138,7 +132,6 @@ class MutantControllerTest {
                 .build();
         when(statsService.getStats()).thenReturn(mockResponse);
 
-        // ACT & ASSERT
         mockMvc.perform(get("/stats")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -148,10 +141,9 @@ class MutantControllerTest {
     @Test
     @DisplayName("POST /mutant -> 415 Unsupported Media Type si no es JSON")
     void testCheckMutant_ReturnUnsupportedMediaType() throws Exception {
-        // ACT & ASSERT: Petición con Content-Type incorrecto
         mockMvc.perform(post("/mutant")
-                        .contentType(MediaType.TEXT_PLAIN) // <-- Incorrecto
+                        .contentType(MediaType.TEXT_PLAIN)
                         .content("Some content"))
-                .andExpect(status().isUnsupportedMediaType()); // 415
+                .andExpect(status().isUnsupportedMediaType());
     }
 }
